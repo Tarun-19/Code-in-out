@@ -1,0 +1,29 @@
+import java.util.*;
+import java.math.BigInteger;
+public class merge_list
+{
+    public static void main (String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int t,n,i,m;
+        t=sc.nextInt();
+        while((t--)>0)
+        {
+            n=sc.nextInt();
+            m=sc.nextInt();
+            BigInteger fn=new BigInteger("1");
+            BigInteger fm=new BigInteger("1");
+            BigInteger fnm=new BigInteger("1");
+            for(i=2;i<=n;i++)
+            fn=fn.multiply(BigInteger.valueOf(i));
+            for(i=2;i<=m;i++)
+            fm=fm.multiply(BigInteger.valueOf(i));
+            for(i=2;i<=n+m;i++)
+            fnm=fnm.multiply(BigInteger.valueOf(i));
+            
+            fnm=fnm.divide(fn.multiply(fm));
+            
+            System.out.println(fnm.mod(BigInteger.valueOf(1000000007)));
+        }
+    }
+}
