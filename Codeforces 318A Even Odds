@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    long long int t,i,ans,k,n;
+        cin>>n>>k;
+        
+        if(n%2==0)
+        {
+            i=n/2;
+            
+            if(k<=i)
+            {
+                ans=1+(2*(k-1));
+                cout<<ans<<endl;
+            }
+            else
+            {
+                k=k-i;
+                ans=2+(2*(k-1));
+                cout<<ans<<endl;
+            }
+        }
+        else
+        {
+            i=(long long int)(n/2)+1;
+            
+            
+            if(k<=i)
+            {
+                ans=1+(2*(k-1));
+                cout<<ans<<endl;
+            }
+                
+            else
+            {
+                k=k-i;
+                ans=2+(2*(k-1));
+                cout<<ans<<endl;
+            }
+        }
+	return 0;
+}
