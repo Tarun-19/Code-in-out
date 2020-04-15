@@ -1,0 +1,47 @@
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    int main()
+    {
+        char ch;
+        int i,n,j,k,l,x,cnt=0,c,tmp;
+        vector<int> v;
+        
+        while(cin>>ch)
+        v.push_back((int)ch-48);
+        
+        if(v.size()==1)
+        {
+            cout<<0;
+            return 0;
+        }
+        n=0;
+        for(i=0;i<v.size();i++)
+        {
+            n+=v[i];
+        }
+        cnt++;
+        
+        while(n>=10)
+        {
+            
+            x=n;tmp=0;
+            while(x>0)
+            {
+                tmp+=(x%10);
+                x=x/10;
+            }
+            
+            
+            cnt++;
+            n=tmp;
+        }
+        
+        
+        
+        
+        
+        cout<<cnt;
+        
+    	return 0;
+    }
