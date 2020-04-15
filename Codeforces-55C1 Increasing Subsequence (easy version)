@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    char ch;
+    long long int i,n,c,j,k,l,x,ls=-1,p;
+    string s="";
+    
+    vector<long long int> v;
+    cin>>n;
+    
+    while(scanf("%lld",&x)!=EOF)
+    v.push_back(x);
+    
+    j=0;
+    p=n-1;
+    for(i=0;i<n;i++)
+    {
+        if(v[j]>ls&&v[p]>ls)
+        {
+            x=min(v[j],v[p]);
+            if(x==v[j])
+            {
+                s=s+"L";
+                ls=x;
+                j++;
+            }
+            
+            else
+            {
+                s=s+"R";
+                ls=x;
+                p--;
+            }
+            
+            continue;
+        }//if
+        
+        
+        
+        
+        if(v[j]>ls)
+        {
+            s=s+"L";
+            ls=v[j];
+            j++;
+            
+            continue;
+        }
+        if(v[p]>ls)
+        {
+            s=s+"R";
+            ls=v[p];
+            p--;
+            continue;
+        }
+        
+        
+        break;
+    }
+    
+    
+    // for(i=0;i<v1.size();i++)
+    // cout<<v1[i]<<" ";
+    // cout<<endl;
+    cout<<s.size()<<"\n"<<s;
+    
+	return 0;
+}
