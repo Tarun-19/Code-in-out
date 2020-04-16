@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+long long int oddln(long long int l)
+{
+    long long int x=0;
+    for(long long int i=0;i<l/2;i++)
+    x=(x*10)+4;
+    for(long long int i=0;i<l/2;i++)
+    x=(x*10)+7;
+    return x;
+}
+
+long long int evnmax(long long int l)
+{
+    long long int x=0;
+    for(long long int i=0;i<l/2;i++)
+    x=(x*10)+7;
+    for(long long int i=0;i<l/2;i++)
+    x=(x*10)+4;
+    return x;
+}
+
+long long int check(long long int x,long long int l)
+{
+    long long int i,fr=0,sv=0;
+    
+    while(x>0)
+    {
+        i=x%10;
+        if(i==7)
+        sv++;
+        else if(i==4)
+        fr++;
+        
+        x=x/10;
+    }
+    
+    if(sv==fr&&(2*fr)==l)
+    return 1;
+    return 0;
+}
+
+
+
+int main()
+{
+    long long int i,n,k,l,x,tmp,mx;
+    cin>>n;
+    
+    l=1+log10(n);
+    
+    if(l%2==1)
+    {
+        cout<<oddln(l+1);
+        return 0;
+    }
+    
+    
+    mx=evnmax(l);
+    
+    if(mx<=n)
+    {
+        cout<<oddln(l+2);
+        return 0;
+    }
+    
+    
+    i=oddln(l);
+    i=max(i,n);
+    
+    x=evnmax(l);
+    for(;i<=x;i++)
+    {
+        
+        if(check(i,l))
+        {
+            cout<<i;
+            break;
+        }
+        
+    }
+    
+	return 0;
+}
