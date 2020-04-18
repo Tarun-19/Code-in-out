@@ -1,0 +1,108 @@
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    int main()
+    {
+        char ch;
+        long long int i,n,c,j,k,l,x,ls=-1,p,r,cl,cr;
+        string s="";
+        
+        vector<long long int> v;
+        cin>>n;
+        
+        while(scanf("%lld",&x)!=EOF)
+        v.push_back(x);
+        
+        j=0;
+        p=n-1;
+        for(i=0;i<n;i++)
+        {
+            if(ls>=(max(v[j],v[p])))
+            break;
+            
+            if(v[j]==v[p])
+            {
+                string sl=s+"L",sr=s+"R";
+                l=j;r=p;
+                
+                cl=0;
+                while(l<=r)
+                {
+                    if(l+1<=r&&l+1<n&&v[l]<v[l+1])
+                    cl++;
+                    else
+                    break;
+                    
+                    l++;
+                    sl=sl+"L";
+                }
+                
+                cr=0;
+                while(j<=p)
+                {
+                    if(p-1>=0&&p-1>=j&&v[p]<v[p-1])
+                    cr++;
+                    else
+                    break;
+                    
+                    p--;
+                    sr=sr+"R";
+                }
+                
+                
+                if(cl>cr)
+                cout<<sl.size()<<"\n"<<sl;
+                else
+                cout<<sr.size()<<"\n"<<sr;
+                
+                return 0;
+            }
+            
+            
+            if(v[j]>ls&&v[p]>ls)
+            {
+                x=min(v[j],v[p]);
+                if(x==v[j])
+                {
+                    s=s+"L";
+                    ls=x;
+                    j++;
+                }
+                
+                else
+                {
+                    s=s+"R";
+                    ls=x;
+                    p--;
+                }
+                
+                continue;
+            }//if
+            
+            
+            
+            
+            if(v[j]>ls)
+            {
+                s=s+"L";
+                ls=v[j];
+                j++;
+                
+                continue;
+            }
+            if(v[p]>ls)
+            {
+                s=s+"R";
+                ls=v[p];
+                p--;
+                continue;
+            }
+            
+            
+            break;
+        }
+        
+        cout<<s.size()<<"\n"<<s;
+        
+    	return 0;
+    }
