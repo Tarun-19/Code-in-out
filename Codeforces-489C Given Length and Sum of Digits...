@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+string mx="",mn="";
+
+void largest(long long int l,long long int sum)
+{
+    long long int i,x;
+    
+    x=sum/9;
+    
+    for(i=1;i<=x;i++)
+    mx+="9";
+    
+    if(l>x)
+    mx+=(char)((sum%9)+48);
+    
+    for(i=x+2;i<=l;i++)
+    mx+="0";
+    
+}
+
+long long int smallest(long long int l,long long int sum)
+{
+    long long int i,x;
+    
+    string rev="";
+    for(i=0;i<mx.size();i++)
+    rev=mx[i]+rev;
+    
+    
+    if(rev.front()=='0')
+    rev[0]='1';
+    else
+    {mn=rev;return 0;}
+    
+    
+    for(i=1;i<rev.size();i++)
+    {
+        if(rev[i]!='0')
+        break;
+    }
+    
+    if((int)rev[i]>=(int)('1'))
+    rev[i]=(char)( ((int)rev[i])-1   );
+    /*else
+    {
+        rev[i-1]=(char)( ((int)rev[i-1])-1   );
+        rev[i]='0';
+    }*/
+    
+    mn=rev;
+    return 0;
+}
+
+
+
+
+int main()
+{
+    long long int sum,n,m,i,j,k,l;
+    cin>>l>>sum;
+    
+    
+    if(sum>l*9||(sum==0&&l>1))
+    {
+        cout<<"-1 -1";
+        return 0;
+    }
+    
+    
+    largest(l,sum);
+    
+    i=smallest(l,sum);
+    
+    if(l==1&&sum==0)
+    mn="0";
+    
+    cout<<mn<<" "<<mx;
+    
+    
+	return 0;
+}
