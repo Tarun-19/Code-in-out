@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define FAST ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define ll long long int
+#define f0(i,n) for(i=0;i<n;i++)
+#define f1(i,n) for(i=1;i<=n;i++)
+#define ln "\n"
+using namespace std;
+
+ll knapsnack(ll n,ll W,ll wt[],ll val[])
+{
+    ll dp[n+1][W+1],i,j;
+    f0(i,n+1)
+    f0(j,W+1)
+    dp[i][j]=0;
+    
+    
+    f1(i,n)
+    {
+        f1(j,W)
+        {
+            if(j-wt[i-1]<0)
+            dp[i][j]=dp[i-1][j];
+            else
+            dp[i][j]=max(val[i-1]+dp[i-1][j-wt[i-1]],dp[i-1][j]);
+        }
+    }
+    
+    return dp[n][W];
+}
+int main()
+{
+    FAST;
+    ll n,i,W;
+    cin>>n>>W;
+    ll wt[n],val[n];
+    f0(i,n)
+    cin>>wt[i]>>val[i];
+    
+    cout<<knapsnack(n,W,wt,val);
+	return 0;
+}
